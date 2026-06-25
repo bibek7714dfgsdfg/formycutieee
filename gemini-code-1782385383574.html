@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Surprise For You</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f4f8;
+            /* Using a repeating pattern background to match the cute vibe */
+            background-image: radial-gradient(#1d4ed8 0.75px, transparent 0.75px), radial-gradient(#1d4ed8 0.75px, #f0f4f8 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            padding: 20px;
+        }
+
+        .card-container {
+            background: white;
+            border: 4px solid #1d4ed8;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Border accent line inside the card */
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px dashed #1d4ed8;
+            border-radius: 16px;
+            pointer-events: none;
+        }
+
+        .step {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .step.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Emoticons */
+        h1 {
+            color: #1e3a8a;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .emoticon {
+            color: #1d4ed8;
+            font-weight: bold;
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        p {
+            color: #4b5563;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Image handling */
+        .img-placeholder {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid #e5e7eb;
+        }
+
+        .letter-img {
+            width: 220px;
+            height: auto;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+            z-index: 2;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e5e7eb;
+        }
+
+        /* Special letter screen styling */
+        .scrollable-content {
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 5px;
+            margin-top: 15px;
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        
+        <!-- STEP 1: Welcome Screen -->
+        <div class="step active" id="step-1">
+            <!-- Replace placeholder with a cute greeting Snoopy gif/img if you want -->
+            <img class="img-placeholder" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400" alt="Cute illustration">
+            <h1>Hiiiiii Babyyy</h1>
+            <div class="emoticon">(๑•ᴗ•๑)</div>
+            <p>Click the next button! (っ˘з(˘⌣˘ ) ♡</p>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="goToStep(2)">Next!! 🐾</button>
+            </div>
+        </div>
+
+        <!-- STEP 2: The Envelope Proposal -->
+        <div class="step" id="step-2">
+            <img class="letter-img" src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?w=400" alt="Envelope illustration" style="border-radius:12px; margin-bottom:15px;">
+            <h2 style="color: #1e3a8a; margin-bottom: 10px;">IT'S A BIG HUG ENVELOPE!</h2>
+            <p>Do you want to open it?<br>•*⁀➷(  ૢ⁖_⁖ ૢ) .•*</p>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="goToStep(4)">Open it</button>
+                <button class="btn-secondary" onclick="goToStep(3)">No ty</button>
+            </div>
+        </div>
+
+        <!-- STEP 3: "No ty" Rejection Screen -->
+        <div class="step" id="step-3">
+            <img class="img-placeholder" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400" alt="Sad illustration">
+            <p style="font-weight: bold;">Awh... Let's try again, Please? >_&lt;</p>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="goToStep(2)">Again..? 🥺</button>
+            </div>
+        </div>
+
+        <!-- STEP 4: The Love Letter & Couple Photo -->
+        <div class="step" id="step-4">
+            <div class="emoticon">(^O^)</div>
+            
+            <div class="scrollable-content">
+                <!-- Replace this placeholder source with your actual couple picture! -->
+                <img class="img-placeholder" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500" alt="Our Picture" style="width:100%; height:auto; max-height:250px;">
+                
+                <p style="text-align: left; font-size: 0.9rem;">
+                    I want you to know that I love you, and you mean a lot to me. Having you in my life has given it a sense of direction, and I can't trade the happiness in my heart for anything in the world. Until the end, you will always be the one I love. 
+                    <br><br>
+                    I promise to be there for you when you need me. You've touched my heart in ways no one has ever done, and I am delighted to be a part of your life. Every day with you is a blessing. I will forever cherish the day you came into my life, the direction I needed. You're a blessing to my world and I'm lucky to share this feeling of love. You remain my motivation, inspiration, and companion. 
+                    <br><br>
+                    <strong>I LOVE YOU.</strong>
+                </p>
+            </div>
+            
+            <div class="btn-group" style="margin-top: 15px;">
+                <button class="btn-secondary" onclick="goToStep(1)">Start Over ❤️</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function goToStep(stepNumber) {
+            // Hide all steps
+            const steps = document.querySelectorAll('.step');
+            steps.forEach(step => step.classList.remove('active'));
+            
+            // Show target step
+            const targetStep = document.getElementById(`step-${stepNumber}`);
+            if (targetStep) {
+                targetStep.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
