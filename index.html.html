@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter For You</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Letter For Quỳnh</title>
     <!-- Google Fonts for the Pixelated / Cute look -->
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Fredoka+One&display=swap" rel="stylesheet">
     <!-- Canvas Confetti Library for the celebration effect -->
@@ -20,19 +20,19 @@
         * {
             box-sizing: border-box;
             user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
         }
 
         body {
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            /* Falling hearts background simulation using CSS background patterns */
             background-image: 
                 radial-gradient(var(--primary-pink) 20%, transparent 20%),
                 radial-gradient(var(--primary-pink) 20%, transparent 20%);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-            opacity: 0.85;
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
             font-family: 'VT323', monospace;
             display: flex;
             justify-content: center;
@@ -47,23 +47,19 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        #envelope-container:hover {
-            transform: scale(1.05);
+            width: 100%;
+            padding: 20px;
         }
 
         .envelope {
             position: relative;
-            width: 160px;
-            height: 120px;
+            width: 150px;
+            height: 110px;
             background: #fff;
             border: 4px solid var(--border-color);
-            box-shadow: 0 8px 0 rgba(0,0,0,0.1);
+            box-shadow: 0 6px 0 rgba(0,0,0,0.1);
         }
 
-        /* Pixel-art style envelope lines using borders */
         .envelope::before {
             content: '';
             position: absolute;
@@ -72,15 +68,15 @@
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 56px 76px 0 76px;
+            border-width: 50px 71px 0 71px;
             border-color: #fceade transparent transparent transparent;
             z-index: 2;
         }
 
         .envelope-heart {
             position: absolute;
-            top: 45px;
-            left: 64px;
+            top: 40px;
+            left: 59px;
             width: 24px;
             height: 24px;
             background-color: var(--dark-pink);
@@ -99,37 +95,31 @@
             border-radius: 50%;
         }
 
-        .envelope-heart::before {
-            top: -12px;
-            left: 0;
-        }
-
-        .envelope-heart::after {
-            top: 0;
-            left: 12px;
-        }
+        .envelope-heart::before { top: -12px; left: 0; }
+        .envelope-heart::after { top: 0; left: 12px; }
 
         .title-text {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--border-color);
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: center;
             text-shadow: 2px 2px 0px #fff;
+            padding: 0 10px;
         }
 
         /* Screen 2 & 3: Retro Window Container */
         .window-box {
             display: none;
             width: 90%;
-            max-width: 450px;
+            max-width: 360px;
             background: #fff;
             border: 4px solid var(--border-color);
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.15);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
             border-radius: 4px;
-            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
         }
 
-        /* Retro OS Header */
         .window-header {
             background: var(--primary-pink);
             border-bottom: 4px solid var(--border-color);
@@ -139,119 +129,114 @@
             align-items: center;
             font-family: 'Fredoka One', cursive;
             color: white;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 0px var(--border-color);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-shadow: 1.5px 1.5px 0px var(--border-color);
         }
 
         .window-controls {
             display: flex;
-            gap: 5px;
+            gap: 4px;
         }
 
         .control-btn {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             border: 2px solid var(--border-color);
             background: white;
-            font-size: 10px;
-            font-weight: bold;
+            font-size: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--border-color);
+            font-weight: bold;
         }
 
         .window-body {
-            padding: 20px;
+            padding: 20px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             background: #fff0f2;
-            position: relative;
         }
 
-        /* Pixel Heart Container */
         .heart-status {
             display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 6px;
+            margin-bottom: 10px;
         }
 
         .heart-pixel {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--dark-pink);
         }
 
         .question-text {
             font-size: 2rem;
             color: var(--border-color);
-            margin: 10px 0 20px 0;
+            margin: 10px 0 15px 0;
             font-weight: bold;
         }
 
-        /* Pixel Cat Simulation Placeholder */
         .cat-container {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 25px;
+            width: 110px;
+            height: 110px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 4rem;
-            position: relative;
+            font-size: 3.5rem;
+            color: var(--border-color);
         }
 
-        /* Interactive Buttons Grid */
+        /* Interactive Buttons Layout */
         .button-group {
             display: flex;
-            gap: 40px;
+            gap: 20px;
             width: 100%;
             justify-content: center;
             position: relative;
-            height: 50px;
+            height: 55px;
+            margin-top: 10px;
         }
 
         .btn {
-            padding: 5px 25px;
+            padding: 6px 25px;
             font-family: 'VT323', monospace;
             font-size: 1.8rem;
             border: 3px solid var(--border-color);
             background: white;
             cursor: pointer;
             box-shadow: 4px 4px 0px var(--border-color);
-            transition: 0.1s ease;
-        }
-
-        .btn:active {
-            box-shadow: 1px 1px 0px var(--border-color);
-            transform: translate(3px, 3px);
+            border-radius: 4px;
         }
 
         #btn-yes {
             background-color: #a7f3d0;
+            z-index: 5;
         }
 
         #btn-no {
             background-color: #fecaca;
             position: absolute;
             left: 55%;
+            z-index: 1000;
+            transition: transform 0.1s ease;
         }
 
         /* Screen 3: Letter Content Display */
         .letter-content {
-            font-size: 1.4rem;
-            line-height: 1.3;
+            font-size: 1.3rem;
+            line-height: 1.4;
             color: var(--border-color);
             text-align: left;
-            max-height: 250px;
+            max-height: 280px;
             overflow-y: auto;
             padding-right: 5px;
             white-space: pre-line;
         }
 
-        /* Custom Scrollbar for Letter */
         .letter-content::-webkit-scrollbar {
             width: 6px;
         }
@@ -261,7 +246,7 @@
         }
 
         @keyframes popUp {
-            from { transform: scale(0.7); opacity: 0; }
+            from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
     </style>
@@ -273,13 +258,13 @@
         <div class="envelope">
             <div class="envelope-heart"></div>
         </div>
-        <div class="title-text">♡ Letter For Marie!! ♡</div>
+        <div class="title-text">✨ Letter For Quỳnh!! ✨</div>
     </div>
 
     <!-- STAGE 2: THE INTERACTIVE QUESTION WINDOW -->
     <div class="window-box" id="question-window">
         <div class="window-header">
-            <span>- LOVE -</span>
+            <span>- LOVE_SYS -</span>
             <div class="window-controls">
                 <div class="control-btn">—</div>
                 <div class="control-btn">❑</div>
@@ -288,19 +273,18 @@
         </div>
         <div class="window-body">
             <div class="heart-status">
-                <span class="heart-pixel">♥</span>
-                <span class="heart-pixel">♥</span>
-                <span class="heart-pixel">♥</span>
+                <span class="heart-pixel">💖</span>
+                <span class="heart-pixel">💖</span>
+                <span class="heart-pixel">💖</span>
             </div>
             
             <div class="question-text">Do you love me?</div>
             
-            <!-- Cute Pixel Cat Emoticon Face -->
-            <div class="cat-container" id="cat-face">(=•́ܫ•̀=)</div>
+            <div class="cat-container" id="cat-face">(=^-ω-^=)</div>
             
-            <div class="button-group" id="btn-container">
+            <div class="button-group">
                 <button class="btn" id="btn-yes" onclick="acceptLove()">YES</button>
-                <button class="btn" id="btn-no" onmouseover="dodgeButton()" onclick="dodgeButton()">NO</button>
+                <button class="btn" id="btn-no" ontouchstart="dodgeButton(event)" onclick="dodgeButton(event)">NO</button>
             </div>
         </div>
     </div>
@@ -308,7 +292,7 @@
     <!-- STAGE 3: THE SECRET LETTER WINDOW -->
     <div class="window-box" id="letter-window">
         <div class="window-header">
-            <span>- LOVE -</span>
+            <span>- MY_HEART -</span>
             <div class="window-controls">
                 <div class="control-btn">—</div>
                 <div class="control-btn">❑</div>
@@ -316,15 +300,15 @@
             </div>
         </div>
         <div class="window-body">
-            <div class="question-text" style="margin-bottom: 5px; color: var(--dark-pink);">Yippeeeee! 🎉</div>
-            <div style="font-size: 1.5rem; margin-bottom: 15px; color: var(--border-color);">My Love,</div>
+            <div class="question-text" style="margin-bottom: 5px; color: var(--dark-pink);">Yippeeeee! 🦖💝</div>
+            <div style="font-size: 1.5rem; margin-bottom: 15px; color: var(--border-color); font-weight: bold;">To my favorite person,</div>
             
             <div class="letter-content">
-                I just want you to know how deeply and sincerely I love you. Sometimes words feel too small to describe what my heart holds for you, but I will try anyway because you deserve to know how much you mean to me. You are not just someone I love—you are my home, my peace, my safe place in this world. 
+                I just want you to know how deeply and sincerely I love you, Quỳnh. Sometimes words feel too small to describe what my heart holds for you, but I will try anyway because you deserve to know how much you truly mean to me. You are my home, my peace, and my safest place in this entire world.
 
-                When I think of happiness, I think of you. When I think of comfort, I think of you. When I think of my future, I see you in it. Every memory with you is precious to me. Even the simple, silly moments that only we understand. 
+                When I think of pure happiness, I think of you. When I think of ultimate comfort, I think of you. When I think about my future, I see you standing right there in it with me. 
 
-                Thank you for being you, and for letting me love you. I promise to keep choosing you, every single day.
+                Thank you for being exactly who you are, and for letting me love you. I promise to keep choosing you, holding your hand, and loving you more and more every single day.
             </div>
         </div>
     </div>
@@ -336,42 +320,43 @@
         const noBtn = document.getElementById('btn-no');
         const catFace = document.getElementById('cat-face');
 
-        // Transition from Envelope to Question Window
         function openEnvelope() {
             envelopeContainer.style.display = 'none';
             questionWindow.style.display = 'block';
         }
 
-        // Logic to make the "NO" button teleport when cursor approaches or clicks it
-        function dodgeButton() {
-            // Update Cat Emoticon to a shocked face when dodging
-            catFace.innerText = '(>_<)';
+        // Mobile-optimized dodging logic
+        function dodgeButton(event) {
+            if (event) {
+                event.preventDefault(); // Prevents touch trigger delays or double firing
+            }
             
-            // Generate random bounds within the viewport to move the button safely
-            const padding = 50;
+            catFace.innerText = '(>_<◦)';
+            
+            // Get screen bounds factoring in button size
+            const padding = 30;
             const maxX = window.innerWidth - noBtn.offsetWidth - padding;
             const maxY = window.innerHeight - noBtn.offsetHeight - padding;
             
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
+            // Make sure coordinates stay completely visible on mobile displays
+            let randomX = Math.max(padding, Math.random() * maxX);
+            let randomY = Math.max(padding, Math.random() * maxY);
             
-            // Switch to fixed position to move anywhere on the screen
             noBtn.style.position = 'fixed';
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
+            noBtn.style.left = '0px';
+            noBtn.style.top = '0px';
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
             
-            // Revert cat face back to neutral after a brief moment
             setTimeout(() => {
-                catFace.innerText = '(=•́ܫ•̀=)';
+                catFace.innerText = '(=^-ω-^=)';
             }, 600);
         }
 
-        // Final transition to the letter content with background party confetti
         function acceptLove() {
             questionWindow.style.display = 'none';
             letterWindow.style.display = 'block';
             
-            // Trigger endless/burst confetti loop
+            // Birthday / Love burst confetti pattern 
             var duration = 5 * 1000;
             var end = Date.now() + duration;
 
@@ -380,14 +365,14 @@
                     particleCount: 3,
                     angle: 60,
                     spread: 55,
-                    origin: { x: 0 },
+                    origin: { x: 0, y: 0.8 },
                     colors: ['#ff4d6d', '#ff8fa3', '#ffccd5']
                 });
                 confetti({
                     particleCount: 3,
                     angle: 120,
                     spread: 55,
-                    origin: { x: 1 },
+                    origin: { x: 1, y: 0.8 },
                     colors: ['#ff4d6d', '#ff8fa3', '#ffccd5']
                 });
 
