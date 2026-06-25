@@ -159,6 +159,7 @@
             align-items: center;
             text-align: center;
             background: #fff0f2;
+            position: relative;
         }
 
         .heart-status {
@@ -191,14 +192,14 @@
             white-space: nowrap;
         }
 
-        /* Interactive Buttons Layout */
+        /* Mobile Constraint Layout for Buttons */
         .button-group {
             display: flex;
             gap: 15px;
             width: 100%;
             justify-content: center;
             position: relative;
-            height: 50px;
+            height: 60px;
             margin-top: 5px;
         }
 
@@ -217,15 +218,18 @@
         #btn-yes {
             background-color: #a7f3d0;
             position: absolute;
-            right: 52%;
+            left: 15%;
+            top: 0;
+            z-index: 10;
         }
 
         #btn-no {
             background-color: #fecaca;
             position: absolute;
-            left: 52%;
+            right: 15%;
+            top: 0;
             z-index: 1000;
-            transition: transform 0.1s ease;
+            transition: all 0.15s ease-out;
         }
 
         /* Screen 3: Letter Content Display */
@@ -234,7 +238,7 @@
             line-height: 1.4;
             color: var(--border-color);
             text-align: left;
-            max-height: 280px;
+            max-height: 240px;
             overflow-y: auto;
             padding-right: 5px;
             white-space: pre-line;
@@ -285,7 +289,7 @@
             
             <div class="cat-container" id="cat-face">(=^-ω-^=)</div>
             
-            <div class="button-group">
+            <div class="button-group" id="btn-container">
                 <button class="btn" id="btn-yes" onclick="acceptLove()">YES</button>
                 <button class="btn" id="btn-no" ontouchstart="dodgeButton(event)" onclick="dodgeButton(event)">NO</button>
             </div>
@@ -321,6 +325,7 @@
         const questionWindow = document.getElementById('question-window');
         const letterWindow = document.getElementById('letter-window');
         const noBtn = document.getElementById('btn-no');
+        const btnContainer = document.getElementById('btn-container');
         const catFace = document.getElementById('cat-face');
 
         function openEnvelope() {
@@ -331,18 +336,26 @@
         function dodgeButton(event) {
             if (event) {
                 event.preventDefault();
+                event.stopPropagation();
             }
             
             catFace.innerText = '(>_<◦)';
             
-            const padding = 30;
-            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            // Get boundaries of parent container so button never leaves the pink window screen layout
+            const containerWidth = btnContainer.clientWidth;
+            const containerHeight = btnContainer.clientHeight;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
             
-            let randomX = Math.max(padding, Math.random() * maxX);
-            let randomY = Math.max(padding, Math.random() * maxY);
+            // Generate coordinates within secure mobile viewport bounds
+            const maxX = containerWidth - btnWidth;
+            const maxY = window.innerHeight < 600 ? 40 : 120; // Extra breathing vertical range allowance if user is on small screens
             
-            noBtn.style.position = 'fixed';
+            let randomX = Math.random() * maxX;
+            let randomY = (Math.random() * maxY) - 30; // Allows up/down layout shift
+            
+            // Absolute positioning locked strictly within active view card context
+            noBtn.style.position = 'absolute';
             noBtn.style.left = '0px';
             noBtn.style.top = '0px';
             noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
