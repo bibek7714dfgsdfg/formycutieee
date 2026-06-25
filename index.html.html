@@ -168,8 +168,9 @@
         }
 
         .heart-pixel {
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             color: var(--dark-pink);
+            text-shadow: 1px 1px 0px var(--border-color);
         }
 
         .question-text {
@@ -185,9 +186,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2.2rem; /* Adjusted size to guarantee it doesn't wrap lines */
+            font-size: 2.2rem;
             color: var(--border-color);
-            white-space: nowrap; /* Forces text to stay on a single line */
+            white-space: nowrap;
         }
 
         /* Interactive Buttons Layout */
@@ -216,7 +217,7 @@
         #btn-yes {
             background-color: #a7f3d0;
             position: absolute;
-            right: 52%; /* Keeps side-by-side positioning robust */
+            right: 52%;
         }
 
         #btn-no {
@@ -260,13 +261,13 @@
         <div class="envelope">
             <div class="envelope-heart"></div>
         </div>
-        <div class="title-text">✨ Letter For Quỳnh!! ✨</div>
+        <div class="title-text">♡ Letter For Quỳnh!! ♡</div>
     </div>
 
     <!-- STAGE 2: THE INTERACTIVE QUESTION WINDOW -->
     <div class="window-box" id="question-window">
         <div class="window-header">
-            <span>- LOVE_SYS -</span>
+            <span>- LOVE -</span>
             <div class="window-controls">
                 <div class="control-btn">—</div>
                 <div class="control-btn">❑</div>
@@ -275,9 +276,9 @@
         </div>
         <div class="window-body">
             <div class="heart-status">
-                <span class="heart-pixel">💖</span>
-                <span class="heart-pixel">💖</span>
-                <span class="heart-pixel">💖</span>
+                <span class="heart-pixel">♥</span>
+                <span class="heart-pixel">♥</span>
+                <span class="heart-pixel">♥</span>
             </div>
             
             <div class="question-text">Do you love me?</div>
@@ -294,7 +295,7 @@
     <!-- STAGE 3: THE SECRET LETTER WINDOW -->
     <div class="window-box" id="letter-window">
         <div class="window-header">
-            <span>- MY_HEART -</span>
+            <span>- LOVE -</span>
             <div class="window-controls">
                 <div class="control-btn">—</div>
                 <div class="control-btn">❑</div>
@@ -302,7 +303,7 @@
             </div>
         </div>
         <div class="window-body">
-            <div class="question-text" style="margin-bottom: 5px; color: var(--dark-pink);">Yippeeeee! 🦖💝</div>
+            <div class="question-text" style="margin-bottom: 5px; color: var(--dark-pink);">Yippeeeee!</div>
             <div style="font-size: 1.5rem; margin-bottom: 15px; color: var(--border-color); font-weight: bold;">To my favorite person,</div>
             
             <div class="letter-content">
@@ -327,20 +328,17 @@
             questionWindow.style.display = 'block';
         }
 
-        // Mobile-optimized dodging logic
         function dodgeButton(event) {
             if (event) {
-                event.preventDefault(); // Prevents touch trigger delays or double firing
+                event.preventDefault();
             }
             
             catFace.innerText = '(>_<◦)';
             
-            // Get screen bounds factoring in button size
             const padding = 30;
             const maxX = window.innerWidth - noBtn.offsetWidth - padding;
             const maxY = window.innerHeight - noBtn.offsetHeight - padding;
             
-            // Make sure coordinates stay completely visible on mobile displays
             let randomX = Math.max(padding, Math.random() * maxX);
             let randomY = Math.max(padding, Math.random() * maxY);
             
@@ -358,7 +356,6 @@
             questionWindow.style.display = 'none';
             letterWindow.style.display = 'block';
             
-            // Birthday / Love burst confetti pattern 
             var duration = 5 * 1000;
             var end = Date.now() + duration;
 
